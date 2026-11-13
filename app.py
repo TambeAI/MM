@@ -4,7 +4,7 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-PRACTICALS_FOLDER = Path(__file__).parent / "t"
+PRACTICALS_FOLDER = Path(__file__).parent 
 
 
 @app.route("/t/<int:practical_id>")
