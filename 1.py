@@ -1,3 +1,4 @@
+
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
@@ -29,5 +30,3 @@ print(df.head())
 
 print("\nFinal Dataset: ")
 print(df.head())
-
-df.to_csv("cleaned_dataset.csv")
