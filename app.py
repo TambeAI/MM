@@ -9,7 +9,7 @@ PRACTICALS_FOLDER = Path(__file__).parent
 @app.route("/t/<int:practical_id>")
 def show_practical(practical_id):
 
-    file_path = PRACTICALS_FOLDER / f"t{practical_id}.py"
+    file_path = PRACTICALS_FOLDER / f"{practical_id}.txt"
 
     if not file_path.is_file():
         abort(404)
