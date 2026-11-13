@@ -1,0 +1,50 @@
+
+import pandas as pd
+import time
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+df = pd.read_csv(r"add iris csv file path here")
+
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+start = time.time()
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+pred = model.predict(X_test)
+time1 = time.time() - start
+acc1 = accuracy_score(y_test, pred)
+
+pca = PCA(n_components=2)
+X_train_pca = pca.fit_transform(X_train)
+X_test_pca = pca.transform(X_test)
+
+start = time.time()
+model_pca = LogisticRegression(max_iter=1000)
+model_pca.fit(X_train_pca, y_train)
+pred_pca = model_pca.predict(X_test_pca)
+time2 = time.time() - start
+acc2 = accuracy_score(y_test, pred_pca)
+
+print("Original Features:", X.shape[1])
+print("Reduced Features:", X_train_pca.shape[1])
+
+print("\nBefore PCA")
+print("Accuracy:", acc1)
+print("Execution Time:", time1)
+
+print("\nAfter PCA")
+print("Accuracy:", acc2)
+print("Execution Time:", time2)
