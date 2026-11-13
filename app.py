@@ -4,8 +4,7 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-PRACTICALS_FOLDER = Path(__file__).parent 
-
+PRACTICALS_FOLDER = Path(__file__).parent
 
 @app.route("/t/<int:practical_id>")
 def show_practical(practical_id):
@@ -21,7 +20,6 @@ def show_practical(practical_id):
         code,
         content_type="text/plain; charset=utf-8"
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
